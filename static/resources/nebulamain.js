@@ -106,34 +106,8 @@ window.addEventListener("load", () => {
         "Hmmm.. Something isn't right.."
     }, 17000)
   })
-
   
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  if ( urlParams.get('uul')) {
-    const value = urlParams.get('uul')
-    let url = value.trim()
-    if (!isUrl(url)) url = "https://www.google.com/search?q=" + url
-    if (!(url.startsWith("https://") || url.startsWith("http://")))
-      url = "http://" + url
-    // encode the URL for UltraViolet
-    let redirectTo =
-      proxy === "uv"
-        ? __uv$config.prefix + __uv$config.encodeUrl(url)
-        : __osana$config.prefix + __osana$config.codec.encode(url)
-
-      console.log(redirectTo)
-  }
-  // Form submission
-  const form = document.querySelector("form")
-  form.addEventListener("submit", (event) => {
-    event.preventDefault()
-    // Check if the service worker (commonly called SW) is registered
-    if (typeof navigator.serviceWorker === "undefined")
-      alert(
-        "An error occured registering your service worker. Please contact support - discord.gg/unblocker"
-      )
-    //
+  function pproxy(val) {
     if (proxy === "uv" || proxy === "osana") {
       // Re-register the service worker incase it failed to onload
       navigator.serviceWorker
@@ -141,7 +115,7 @@ window.addEventListener("load", () => {
           scope: "/service/",
         })
         .then(() => {
-          const value = event.target.firstElementChild.value
+          const value = val
           let url = value.trim()
           if (!isUrl(url)) url = "https://www.google.com/search?q=" + url
           if (!(url.startsWith("https://") || url.startsWith("http://")))
@@ -152,7 +126,8 @@ window.addEventListener("load", () => {
               ? __uv$config.prefix + __uv$config.encodeUrl(url)
               : __osana$config.prefix + __osana$config.codec.encode(url)
           const option = localStorage.getItem("nogg")
-          if (option === "on") {
+          if (option === "off") {
+            
             stealthEngine(redirectTo)
           } else {
             setTimeout(() => {
@@ -192,8 +167,8 @@ document.addEventListener("visibilitychange", handleTabLeave)
           
            <style>@import "https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap";/* CSSTidy 1.5.2: Fri, 11 Nov 2022 17:13:44 +0000 */body{background:#191724;color:#fff}div{margin-top:30px;font-size:100px;text-align:center;font-family:"Roboto";font-weight:700}.loader .b1{left:42%}.loader .b2{left:50%;animation-delay:100ms}.loader .b3{left:58%;animation-delay:200ms;color:#eb6f92}.loader .b1,.loader .b2,.loader .b3{width:10px;height:30px;position:absolute;top:50%;transform:rotate(0);animation-name:spinify;animation-duration:1600ms;animation-iteration-count:infinite;color:#eb6f92;background-color:#eb6f92}@keyframes spinify{0%{transform:translate(0px,0px)}33%{transform:translate(0px,24px);border-radius:100%;width:10px;height:10px}66%{transform:translate(0px,-16px)}88%{transform:translate(0px,4px)}100%{transform:translate(0px,0px)}}</style> 
            <div class="loader">
-  <div>Nebula is loading your content!</div>
-  <div style='font-size:35px;'>Please wait</div>
+  <div>Pls Wait</div>
+  <div style='font-size:15px;'>Via nebula</div>
   <div class="b1"></div> 
   <div class="b2"></div>
   <div class="b3"></div>
@@ -203,7 +178,7 @@ document.addEventListener("visibilitychange", handleTabLeave)
               const iframe = blob.createElement("iframe")
               const style = iframe.style
               const img = blob.createElement("link")
-              const link = location.href
+              const link = location.protocol + '//' + location.host + location.pathname
              
               img.rel = "icon"
               img.href =
@@ -227,6 +202,25 @@ document.addEventListener("visibilitychange", handleTabLeave)
           }
         })
     }
+  }
+  
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  if ( urlParams.get('uul')) {
+    const value = urlParams.get('uul')
+    pproxy(value)
+  }
+  // Form submission
+  const form = document.querySelector("form")
+  form.addEventListener("submit", (event) => {
+    event.preventDefault()
+    // Check if the service worker (commonly called SW) is registered
+    if (typeof navigator.serviceWorker === "undefined")
+      alert(
+        "An error occured registering your service worker. Please contact support - discord.gg/unblocker"
+      )
+    //
+    pproxy(event.target.firstElementChild.value)
   })
 
   // Stealth engine, a dependency for everything above.
@@ -262,13 +256,14 @@ document.addEventListener("visibilitychange", handleTabLeave)
           arcSrc.setAttribute("src", "https://arc.io/widget.min.js#BgaWcYfi")
           arcSrc.setAttribute("async", "")
           doc.head.appendChild(arcSrc)
-          const link = location.href
+          const link = location.protocol + '//' + location.host + location.pathname
+
           img.rel = "icon"
           img.href =
             "https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png"
           doc.title = getRandomName()
 
-          var currentLink = link.slice(0, link.length - 1)
+          var currentLink = link
 
           iframe.src = currentLink + encodedURL
 
@@ -492,7 +487,7 @@ function log() {
   let online = navigator.onLine
   let userAgent = navigator.userAgent
   let browserName
-  let diagnosticDomain = window.location.href
+  let diagnosticDomain = location.protocol + '//' + location.host + location.pathname
   if (userAgent.match(/chrome|chromium|crios/i)) {
     browserName = "chrome"
   } else if (userAgent.match(/firefox|fxios/i)) {
@@ -779,7 +774,7 @@ function link(_link) {
           const iframe = doc.createElement("iframe")
           const style = iframe.style
           const img = doc.createElement("link")
-          const link = location.href
+          const link = location.protocol + '//' + location.host + location.pathname
           img.rel = "icon"
           img.href =
             "https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png"
@@ -794,7 +789,7 @@ function link(_link) {
           doc.body.appendChild(iframe)
         }
       }
-    }, 0200)
+    }, 200)
   } else {
     location.href =
       "service/go/" + __uv$config.encodeUrl("https://radon.games/")
