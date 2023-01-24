@@ -714,13 +714,13 @@ function getRandomName() {
   return randomName
 }
 
-// Check if the Browser variable is undefined
-// This is unused as of now but it could be used for better cloaking in the future, specifically with activeTab
-if (typeof browser === "undefined") {
-  // Initialize the browser variable
-  var browser = chrome
-}
-browser = chrome
+// // Check if the Browser variable is undefined
+// // This is unused as of now but it could be used for better cloaking in the future, specifically with activeTab
+// if (typeof browser === "undefined") {
+//   // Initialize the browser variable
+//   var browser = chrome
+// }
+// browser = chrome
 
 // Clickoff cloaking
 // This function is called as a callback during the event listener
