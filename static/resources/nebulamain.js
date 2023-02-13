@@ -80,31 +80,7 @@ window.addEventListener("load", () => {
 
   const useNoGG = false
   const proxy = localStorage.getItem("proxy") || "uv"
-  const inpbox = document.querySelector("form")
-  // Display the "loading" indicators on the main page, looks much better than a static/still screen.
-  inpbox.addEventListener("submit", (event) => {
-    // Prevents the default event tasks
-    event.preventDefault()
-    console.log("Connecting to service -> loading")
-    const loader = document.getElementById("lpoader")
-    const texts = document.getElementById("connecterText")
-    // Adjust size as neccesary
-    const loadConstructer = loader.style
-    const textConstructer = texts.style
-    loadConstructer.display = "flex"
-    loadConstructer.justifyContent = "center"
-    // Changing the text over multiple periods of time creates character, and aliveness (is that even a word?)
-    setTimeout(() => {
-      document.getElementById("connecterText").style.fontSize = "12px"
-      document.getElementById("connecterText").innerHTML =
-        "Due to high server load, this may take a while."
-    }, 3200)
-    setTimeout(() => {
-      document.getElementById("connecterText").style.fontSize = "14px"
-      document.getElementById("connecterText").innerHTML =
-        "Hmmm.. Something isn't right.."
-    }, 17000)
-  })
+
   
   function pproxy(val) {
     if (proxy === "uv" || proxy === "osana") {

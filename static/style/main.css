@@ -2,20 +2,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,100&display=swap');
 
 :root {
-	--background-primary: #191724;
-	--navbar-color: #26233a;
+	--background-primary: #FFF
+	--navbar-color: #FFF
 	--navbar-height: 60px;
 	--navbar-text-color: #7967dd;
 	--navbar-link-color: #e0def4;
 	--navbar-font: "Roboto";
 	--input-text-color: #e0def4;
 	--input-placeholder-color: white;
-	--input-background-color: #1f1d2e;
-	--input-border-color: #eb6f92;
+	--input-background-color: gray;
+	--input-border-color: #FFF
 	--input-border-size: 1.3px;
 	--navbar-logo-filter: none;
 }
-
+.centered {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
 
 #content input {
 	font-size: 20px;
@@ -65,11 +69,11 @@
 
 svg path,
 svg rect {
-	fill: #eb6f92;
+	fill: #000;
 }
 
 .connector {
-	color: white;
+	color: #000;
 	margin-left: 10px;
 	font-size: 15px;
 }
