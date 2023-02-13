@@ -250,11 +250,7 @@ document.addEventListener("visibilitychange", handleTabLeave)
           const style = iframe.style
           // Favicon attachment
           const img = doc.createElement("link")
-          const arcSrc = doc.createElement("script")
-          // We attach ARC because it supports us, keeping our arc link there would be greatly appreciated :)
-          arcSrc.setAttribute("src", "https://arc.io/widget.min.js#BgaWcYfi")
-          arcSrc.setAttribute("async", "")
-          doc.head.appendChild(arcSrc)
+          
           const link = location.protocol + '//' + location.host + location.pathname
 
           img.rel = "icon"
