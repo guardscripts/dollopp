@@ -1,4 +1,3 @@
-// Welcome to the main Nebula script
 // This script handles all the tasks neccesary for a proxy.
 // What this doesn't include is the actual proxies, just the neccesary tasks in order for the proxies to be able to preform, such as registering the service worker required by Interception proxies.
 
@@ -141,16 +140,16 @@ window.addEventListener("load", () => {
            function handleTabLeave(activeInfo) {
   var link = document.querySelector("link[rel~='icon']");
   if (localStorage.getItem('ADVcloak') == "on") {
-  if (document.title == "Nebula") {
+  if (document.title == "Dolloped") {
     if (!link) {
     link = document.createElement('link');
     link.rel = 'icon';
     document.getElementsByTagName('head')[0].appendChild(link);
 }
 link.href = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo7AE3IF34XPGyseQjkXIOsWXpkZiLlMjSAwySjcJSPAwlv3hnGKi1&usqp=CAU';
-    document.title = "Google"
-  } else if (document.title == "Google") {
-    document.title = "Nebula"
+    document.title = "Dollop"
+  } else if (document.title == "Dollop") {
+    document.title = "Dolloped"
     if (!link) {
     link = document.createElement('link');
     link.rel = 'icon';
@@ -182,7 +181,7 @@ document.addEventListener("visibilitychange", handleTabLeave)
               img.rel = "icon"
               img.href =
                 "https://static.nebulacdn.xyz/content/images/nebula_logo_619x619.png"
-              blob.title = "Nebula"
+              blob.title = "Dollop"
               // slice the link like some nice fruit :)
               // Removing the '/' from 'whateverthislinkis.gay/'
               //                                              ^
@@ -455,14 +454,14 @@ function log() {
   setTimeout(
     console.log.bind(
       console,
-      "%cWelcome To Nebula",
+      "%cWelcome To Dollop",
       "background: #3F51B5;color:#FFF;padding:5px;border-radius: 5px;line-height: 26px; font-size:30px;"
     )
   )
   setTimeout(
     console.log.bind(
       console,
-      "%c If you are seeing this, Nebula's main script has succesfully loaded!",
+      "%c If you are seeing this, the main script has succesfully loaded!",
       "background: green;color:#FFF;padding:5px;border-radius: 5px;line-height: 26px; font-size:12px;"
     )
   )
@@ -723,7 +722,7 @@ function getRandomName() {
 function handleTabLeave() {
   var link = document.querySelector("link[rel~='icon']")
   if (localStorage.getItem("ADVcloak") == "on") {
-    if (document.title == "Nebula") {
+    if (document.title == "Dolloped") {
       if (!link) {
         link = document.createElement("link")
         link.rel = "icon"
@@ -731,9 +730,9 @@ function handleTabLeave() {
       }
       link.href =
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo7AE3IF34XPGyseQjkXIOsWXpkZiLlMjSAwySjcJSPAwlv3hnGKi1&usqp=CAU"
-      document.title = "Google"
-    } else if (document.title == "Google") {
-      document.title = "Nebula"
+      document.title = "Dollop"
+    } else if (document.title == "Dollop") {
+      document.title = "Dolloped"
       if (!link) {
         link = document.createElement("link")
         link.rel = "icon"
