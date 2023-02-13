@@ -88,18 +88,6 @@ svg rect {
 	}
 }
 
-.nebHeader {
-	font-family: var(--navbar-font);
-	color: var(--navbar-text-color);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	align-content: center;
-	flex-wrap: nowrap;
-	flex-direction: row;
-	margin-left: .5%;
-
-}
 
 html,
 body {

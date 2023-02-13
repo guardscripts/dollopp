@@ -1,13 +1,4 @@
-// This script handles all the tasks neccesary for a proxy.
-// What this doesn't include is the actual proxies, just the neccesary tasks in order for the proxies to be able to preform, such as registering the service worker required by Interception proxies.
 
-// Documentation Writers/Contributors:
-// GreenWorld#0001 (Discord) / GreenyDev (Github)
-// If you would like to contribute, feel free to open a pull request.
-// These docs are not finished
-
-// Navigation controls for smaller devices
-// Executed in the inline HTML
 function openNav() {
   document.getElementById("sidenav").style.width = "260px"
 }
@@ -16,22 +7,17 @@ function closeNav() {
 }
 
 window.addEventListener("load", () => {
-  // Register the service workers for Osana and Ultraviolet proxy protocols
-  // This is a better method than registering onsubmit because this allows the ability to use proxied links on the main page.
+
   navigator.serviceWorker.register("./sw.js", {
     scope: "/service/",
   })
 
-  // Get's the current day using the Date function built in.
-  // A dependency for displaying time - displayTime(void)
   function getDayName(dateStr, locale) {
     var date = new Date(dateStr)
     return date.toLocaleDateString(locale, { weekday: "long" })
   }
 
-  // The main function to show the time on the main page
-  // needs to be initialized by a call (only one)
-  // Dependent on getDayName function
+
   function displayTime() {
     var date = new Date()
     var h = date.getHours() // 0 - 23
@@ -66,9 +52,7 @@ window.addEventListener("load", () => {
   // initialize the time function
   displayTime()
 
-  // Link evaluation
-  // This functions' purpose is to check a string of text (the argument)
-  // it recognizes whether a string is a URL or not, and it returns a true or false value
+
   function isUrl(val = "") {
     if (
       /^http(s?):\/\//.test(val) ||
@@ -80,7 +64,31 @@ window.addEventListener("load", () => {
 
   const useNoGG = false
   const proxy = localStorage.getItem("proxy") || "uv"
-
+  const inpbox = document.querySelector("form")
+  // Display the "loading" indicators on the main page, looks much better than a static/still screen.
+  inpbox.addEventListener("submit", (event) => {
+    // Prevents the default event tasks
+    event.preventDefault()
+    console.log("Connecting to service -> loading")
+    const loader = document.getElementById("lpoader")
+    const texts = document.getElementById("connecterText")
+    // Adjust size as neccesary
+    const loadConstructer = loader.style
+    const textConstructer = texts.style
+    loadConstructer.display = "flex"
+    loadConstructer.justifyContent = "center"
+    // Changing the text over multiple periods of time creates character, and aliveness (is that even a word?)
+    setTimeout(() => {
+      document.getElementById("connecterText").style.fontSize = "12px"
+      document.getElementById("connecterText").innerHTML =
+        "Due to high server load, this may take a while."
+    }, 3200)
+    setTimeout(() => {
+      document.getElementById("connecterText").style.fontSize = "14px"
+      document.getElementById("connecterText").innerHTML =
+        "Hmmm.. Something isn't right.."
+    }, 17000)
+  })
   
   function pproxy(val) {
     if (proxy === "uv" || proxy === "osana") {
@@ -109,8 +117,6 @@ window.addEventListener("load", () => {
               // If StealthMode is off, this is the enabled option.
               const _popout = window.open("/blob", "_self")
               const blob = _popout.document
-              // Write all of the neccesary page elements, and the Options including the cloak (if enabled)
-              // The blob writing is just the background elements, like the "Nebula is loading your content, please wait" screen. It does not carry proxied content, or even the iframe.
               blob.write(`
            <script> 
            function handleTabLeave(activeInfo) {
