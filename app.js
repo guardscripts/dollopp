@@ -20,7 +20,7 @@ function sendVerificationEmail(UUID, mailTo, OTP) {
   const email = {
     to: mailTo,
     from: `${config.sendFromEmail}`,
-    subject: `NebulaWEB personal access code ${OTP}`,
+    subject: `personal access code ${OTP}`,
     text: `
  ####### ACCESS CODE (OTP) ${OTP} #######
  ####### DO NOT SHARE THIS CODE!  ####### 
