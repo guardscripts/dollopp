@@ -1,4 +1,4 @@
-# George's Proxy
+# Guard's Proxy
 Dollop
 
 ### Proxy Port
